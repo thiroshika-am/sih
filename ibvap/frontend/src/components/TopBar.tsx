@@ -44,51 +44,62 @@ export const TopBar = () => {
   };
 
   return (
-    <header className="h-16 border-b border-slate-800 bg-slate-900/80 backdrop-blur-md flex items-center justify-between px-6 sticky top-0 z-50 shrink-0">
+    <header className="h-16 border-b border-military-green/30 bg-military-bg/80 backdrop-blur-md flex items-center justify-between px-6 sticky top-0 z-50 shrink-0">
       <div className="flex items-center gap-3">
-        <Shield className="w-8 h-8 text-blue-500 drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+        <div className="p-2 bg-military-bg rounded-lg border border-military-green/40 text-military-green shadow-[0_0_10px_rgba(85,107,47,0.3)]">
+          <Shield className="w-6 h-6" />
+        </div>
         <div>
-          <h1 className="text-xl font-black tracking-wider text-slate-100 drop-shadow-sm">IBVAP</h1>
-          <p className="text-[10px] text-blue-400 font-semibold tracking-[0.2em] uppercase">AI BORDER SURVEILLANCE COMMAND CENTER</p>
+          <h1 className="text-xl font-bold tracking-[0.2em] text-military-text font-sans">IBVAP</h1>
+          <p className="text-[9px] text-military-success font-mono tracking-[0.2em]">AI BORDER SURVEILLANCE COMMAND CENTER</p>
         </div>
       </div>
       
       <div className="flex items-center gap-6">
-        <div className="flex flex-col items-end mr-4 border-r border-slate-800 pr-6">
-          <span className="text-sm font-mono text-slate-300">
+        <div className="flex flex-col items-end mr-4 border-r border-military-green/20 pr-6">
+          <span className="text-sm font-mono tracking-widest text-military-text">
             {time.toLocaleTimeString('en-US', { hour12: false })}
           </span>
-          <span className="text-[10px] font-bold text-amber-500 tracking-widest uppercase">SIMULATION MODE</span>
+          <span className="text-[10px] font-bold text-military-warning tracking-widest font-mono">SIMULATION MODE</span>
         </div>
 
-        <div className="flex items-center gap-2 mr-4">
+        <div className="flex items-center gap-2 mr-4 font-mono">
           <span className="relative flex h-3 w-3">
-            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${systemStatus === 'ONLINE' ? 'bg-green-400' : 'bg-red-400'}`}></span>
-            <span className={`relative inline-flex rounded-full h-3 w-3 ${systemStatus === 'ONLINE' ? 'bg-green-500' : 'bg-red-500'}`}></span>
+            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${systemStatus === 'ONLINE' ? 'bg-military-success' : 'bg-military-critical'}`}></span>
+            <span className={`relative inline-flex rounded-full h-3 w-3 ${systemStatus === 'ONLINE' ? 'bg-military-success' : 'bg-military-critical'}`}></span>
           </span>
-          <span className="text-xs font-bold text-slate-300 tracking-wider">SYSTEM: {systemStatus}</span>
+          <span className="text-[10px] font-bold text-military-muted tracking-widest">SYSTEM: <span className={systemStatus === 'ONLINE' ? 'text-military-success' : 'text-military-critical'}>{systemStatus}</span></span>
         </div>
 
         <div className="flex items-center gap-2">
-          <button onClick={startDemo} className="flex items-center gap-1 bg-blue-600/20 hover:bg-blue-600/40 border border-blue-500/50 text-blue-400 px-3 py-1.5 rounded text-xs font-bold transition-all hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+          <button onClick={startDemo} className="flex items-center justify-center gap-2 bg-military-green hover:bg-military-success text-military-bg px-3 py-1.5 rounded-md text-[10px] font-bold font-mono tracking-widest transition-all hover:shadow-[0_0_15px_rgba(95,140,69,0.5)]">
             <Play className="w-3 h-3" /> START DEMO
           </button>
           
-          <button onClick={handlePauseResume} className="flex items-center gap-1 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 px-3 py-1.5 rounded text-xs font-bold transition-colors">
+          <button onClick={handlePauseResume} className="flex items-center justify-center gap-2 bg-military-bg hover:bg-military-panel border border-military-green/50 text-military-green px-3 py-1.5 rounded-md text-[10px] font-bold font-mono tracking-widest transition-all">
             {isPaused ? <Play className="w-3 h-3" /> : <Pause className="w-3 h-3" />} 
             {isPaused ? 'RESUME' : 'PAUSE'}
           </button>
           
-          <button onClick={handleReset} className="flex items-center gap-1 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 px-3 py-1.5 rounded text-xs font-bold transition-colors">
+          <button onClick={handleReset} className="flex items-center justify-center gap-2 bg-military-bg hover:bg-military-panel border border-military-green/50 text-military-green px-3 py-1.5 rounded-md text-[10px] font-bold font-mono tracking-widest transition-all">
             <RotateCcw className="w-3 h-3" /> RESET
           </button>
 
-          <button onClick={handleNetworkToggle} className={`flex items-center gap-1 px-3 py-1.5 rounded text-xs font-bold transition-all border ${isOffline ? 'bg-amber-500/20 text-amber-500 border-amber-500/50 hover:bg-amber-500/30' : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700'}`}>
+          <button onClick={handleNetworkToggle} className={`flex items-center justify-center gap-2 px-3 py-1.5 rounded-md text-[10px] font-bold font-mono tracking-widest transition-all border ${isOffline ? 'bg-military-warning/10 text-military-warning border-military-warning/50 hover:bg-military-warning/20 hover:shadow-[0_0_10px_rgba(197,155,58,0.2)]' : 'bg-military-bg text-military-green border-military-green/50 hover:bg-military-panel'}`}>
             <Network className="w-3 h-3" /> {isOffline ? 'NETWORK OFFLINE' : 'NETWORK SIM'}
           </button>
 
-          <button onClick={triggerFalseAlarm} className="flex items-center gap-1 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/50 text-purple-400 px-3 py-1.5 rounded text-xs font-bold transition-all ml-2">
+          <button onClick={triggerFalseAlarm} className="flex items-center justify-center gap-2 bg-military-critical/10 hover:bg-military-critical/20 hover:shadow-[0_0_10px_rgba(182,58,50,0.2)] border border-military-critical/30 text-military-critical px-3 py-1.5 rounded-md text-[10px] font-bold font-mono tracking-widest transition-all ml-2">
             <AlertTriangle className="w-3 h-3" /> FALSE ALARM
+          </button>
+          
+          <div className="w-px h-6 bg-military-green/20 mx-2"></div>
+          
+          <button onClick={() => {
+            localStorage.removeItem('ibvap_auth');
+            window.location.href = '/login';
+          }} className="flex items-center justify-center gap-2 bg-military-bg hover:bg-military-critical/10 border border-military-critical/30 hover:border-military-critical/50 text-military-critical px-3 py-1.5 rounded-md text-[10px] font-bold font-mono tracking-widest transition-all">
+            LOGOUT
           </button>
         </div>
       </div>

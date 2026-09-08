@@ -78,28 +78,28 @@ export const EventStream = () => {
   };
 
   return (
-    <div className="flex flex-col h-full bg-slate-900 border border-slate-800 rounded-lg overflow-hidden">
-      <div className="bg-slate-950 px-4 py-2 border-b border-slate-800 flex items-center gap-2">
-        <Bell className="w-4 h-4 text-slate-400" />
-        <h3 className="text-xs font-bold text-slate-300 uppercase tracking-widest">Live Event Stream</h3>
+    <div className="flex flex-col h-full bg-military-panel border border-military-green/30 rounded-lg overflow-hidden shadow-[inset_0_0_15px_rgba(0,0,0,0.4)]">
+      <div className="bg-military-bg px-4 py-2 border-b border-military-green/30 flex items-center gap-2">
+        <Bell className="w-4 h-4 text-military-muted" />
+        <h3 className="text-[10px] font-bold text-military-text uppercase tracking-widest font-mono">Live Event Stream</h3>
       </div>
       
-      <div className="flex-1 overflow-y-auto p-2 space-y-1 scrollbar-thin scrollbar-thumb-slate-700">
+      <div className="flex-1 overflow-y-auto p-2 space-y-1 scrollbar-thin scrollbar-thumb-military-green/30">
         {events.length === 0 ? (
-          <div className="h-full flex items-center justify-center text-slate-600 text-xs font-mono uppercase">
+          <div className="h-full flex items-center justify-center text-military-muted text-[10px] font-mono uppercase tracking-widest">
             Awaiting Events...
           </div>
         ) : (
           events.map((evt) => (
             <div key={evt.id} className={`p-2 rounded border-l-2 text-xs font-mono grid grid-cols-[65px_1fr] gap-2 animate-in slide-in-from-top-4 fade-in duration-300 shadow-sm ${
-              evt.severity === 'alert' ? 'bg-red-950/40 border-red-500 text-red-200 shadow-[0_0_10px_rgba(239,68,68,0.2)]' :
-              evt.severity === 'warning' ? 'bg-amber-950/40 border-amber-500 text-amber-200' :
-              'bg-slate-900/60 border-emerald-500 text-slate-300 shadow-[0_0_5px_rgba(16,185,129,0.1)]'
+              evt.severity === 'alert' ? 'bg-military-critical/20 border-military-critical text-military-text shadow-[0_0_10px_rgba(182,58,50,0.2)]' :
+              evt.severity === 'warning' ? 'bg-military-warning/20 border-military-warning text-military-text' :
+              'bg-military-panel/80 border-military-success text-military-text shadow-[0_0_5px_rgba(95,140,69,0.2)]'
             }`}>
-              <div className="text-slate-500 mt-0.5 opacity-70">{evt.time}</div>
+              <div className="text-military-muted mt-0.5 opacity-70">{evt.time}</div>
               <div>
                 <div className="flex flex-col">
-                  <span className={`font-bold flex items-center gap-1 ${evt.severity === 'alert' ? 'text-red-400 animate-pulse' : evt.severity === 'warning' ? 'text-amber-400' : 'text-emerald-400'}`}>
+                  <span className={`font-bold flex items-center gap-1 tracking-widest ${evt.severity === 'alert' ? 'text-military-critical animate-pulse' : evt.severity === 'warning' ? 'text-military-warning' : 'text-military-success'}`}>
                     {getIcon(evt.type)} [{evt.source}]
                   </span>
                   <span className="font-semibold tracking-wide">{evt.type}</span>

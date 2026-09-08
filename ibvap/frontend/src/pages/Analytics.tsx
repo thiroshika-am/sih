@@ -19,36 +19,36 @@ const zoneData = [
 ];
 
 const funnelData = [
-  { value: 12450, name: 'Total Detections', fill: '#3b82f6' },
-  { value: 830, name: 'Persons Tracked', fill: '#10b981' },
-  { value: 145, name: 'Risk Evaluated', fill: '#f59e0b' },
-  { value: 12, name: 'High-Risk Alerts', fill: '#ef4444' }
+  { value: 12450, name: 'Total Detections', fill: '#556B2F' },
+  { value: 830, name: 'Persons Tracked', fill: '#8AA158' },
+  { value: 145, name: 'Risk Evaluated', fill: '#B8860B' },
+  { value: 12, name: 'High-Risk Alerts', fill: '#8B0000' }
 ];
 
 export const Analytics = () => {
   return (
     <div className="flex flex-col h-full p-4 gap-4 animate-in fade-in duration-500 overflow-y-auto">
-      <div className="flex items-center gap-3 bg-slate-900 border border-slate-800 p-4 rounded-lg shrink-0 shadow-lg shadow-black/20">
-        <div className="p-2 bg-pink-500/10 rounded-md border border-pink-500/30">
-          <BarChart3 className="w-6 h-6 text-pink-400" />
+      <div className="flex items-center gap-3 bg-military-panel border border-military-green/30 p-4 rounded-lg shrink-0 shadow-[inset_0_0_15px_rgba(0,0,0,0.4)]">
+        <div className="p-2 bg-military-green/10 rounded-md border border-military-green/30">
+          <BarChart3 className="w-6 h-6 text-military-green" />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-slate-100 tracking-wide">System Analytics</h1>
-          <p className="text-xs text-slate-400 font-mono tracking-widest uppercase">Performance & Threat Insights</p>
+          <h1 className="text-xl font-bold text-military-text tracking-wide">System Analytics</h1>
+          <p className="text-[10px] text-military-muted font-mono tracking-widest uppercase">Performance & Threat Insights</p>
         </div>
       </div>
 
       {/* Top KPI Cards */}
       <div className="grid grid-cols-5 gap-4 shrink-0">
          {[
-           { label: 'Total Detections', value: '12,450', color: 'text-blue-400' },
-           { label: 'Unique Persons', value: '830', color: 'text-emerald-400' },
-           { label: 'Alerts Generated', value: '12', color: 'text-amber-400' },
-           { label: 'High-Risk Events', value: '3', color: 'text-red-400' },
-           { label: 'Avg Inference Latency', value: '42ms', color: 'text-purple-400' }
+           { label: 'Total Detections', value: '12,450', color: 'text-military-success' },
+           { label: 'Unique Persons', value: '830', color: 'text-military-green' },
+           { label: 'Alerts Generated', value: '12', color: 'text-military-warning' },
+           { label: 'High-Risk Events', value: '3', color: 'text-military-critical' },
+           { label: 'Avg Inference Latency', value: '42ms', color: 'text-military-muted' }
          ].map((k, i) => (
-           <div key={i} className="bg-slate-900 border border-slate-800 p-4 rounded-lg shadow-lg flex flex-col justify-center">
-             <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">{k.label}</div>
+           <div key={i} className="bg-military-panel border border-military-green/30 p-4 rounded-lg shadow-[inset_0_0_15px_rgba(0,0,0,0.4)] flex flex-col justify-center">
+             <div className="text-[10px] font-bold text-military-muted uppercase tracking-widest mb-1">{k.label}</div>
              <div className={`text-2xl font-black font-mono ${k.color}`}>{k.value}</div>
            </div>
          ))}
@@ -56,45 +56,45 @@ export const Analytics = () => {
 
       <div className="grid grid-cols-12 gap-4 min-h-[300px]">
         {/* Detection Timeline */}
-        <div className="col-span-8 bg-slate-900 border border-slate-800 p-4 rounded-lg shadow-lg flex flex-col">
-           <h2 className="text-xs font-bold text-slate-300 uppercase tracking-widest flex items-center gap-2 mb-4 border-b border-slate-800 pb-2">
-             <LineChartIcon className="w-4 h-4 text-slate-500" /> Detection Volume vs Alerts
+        <div className="col-span-8 bg-military-panel border border-military-green/30 p-4 rounded-lg shadow-[inset_0_0_15px_rgba(0,0,0,0.4)] flex flex-col">
+           <h2 className="text-[10px] font-bold text-military-text uppercase tracking-widest font-mono flex items-center gap-2 mb-4 border-b border-military-green/30 pb-2">
+             <LineChartIcon className="w-4 h-4 text-military-muted" /> Detection Volume vs Alerts
            </h2>
            <div className="flex-1 min-h-0">
              <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={timelineData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                   <defs>
                     <linearGradient id="colorDet" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
-                      <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                      <stop offset="5%" stopColor="#8AA158" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#8AA158" stopOpacity={0}/>
                     </linearGradient>
                     <linearGradient id="colorAlert" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#ef4444" stopOpacity={0.3}/>
-                      <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
+                      <stop offset="5%" stopColor="#8B0000" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#8B0000" stopOpacity={0}/>
                     </linearGradient>
                   </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-                  <XAxis dataKey="time" stroke="#475569" fontSize={10} tickMargin={10} />
-                  <YAxis stroke="#475569" fontSize={10} />
-                  <RechartsTooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '4px', fontSize: '12px' }} />
-                  <Area type="monotone" dataKey="detections" stroke="#3b82f6" fillOpacity={1} fill="url(#colorDet)" />
-                  <Area type="monotone" dataKey="alerts" stroke="#ef4444" fillOpacity={1} fill="url(#colorAlert)" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(85,107,47,0.3)" vertical={false} />
+                  <XAxis dataKey="time" stroke="rgba(85,107,47,0.8)" fontSize={10} tickMargin={10} />
+                  <YAxis stroke="rgba(85,107,47,0.8)" fontSize={10} />
+                  <RechartsTooltip contentStyle={{ backgroundColor: 'rgb(24,26,24)', borderColor: 'rgba(85,107,47,0.3)', borderRadius: '4px', fontSize: '12px', color: '#E2E8F0' }} />
+                  <Area type="monotone" dataKey="detections" stroke="#8AA158" fillOpacity={1} fill="url(#colorDet)" />
+                  <Area type="monotone" dataKey="alerts" stroke="#8B0000" fillOpacity={1} fill="url(#colorAlert)" />
                 </AreaChart>
              </ResponsiveContainer>
            </div>
         </div>
 
         {/* Funnel */}
-        <div className="col-span-4 bg-slate-900 border border-slate-800 p-4 rounded-lg shadow-lg flex flex-col">
-           <h2 className="text-xs font-bold text-slate-300 uppercase tracking-widest flex items-center gap-2 mb-4 border-b border-slate-800 pb-2">
-             <Activity className="w-4 h-4 text-slate-500" /> AI Pipeline Funnel
+        <div className="col-span-4 bg-military-panel border border-military-green/30 p-4 rounded-lg shadow-[inset_0_0_15px_rgba(0,0,0,0.4)] flex flex-col">
+           <h2 className="text-[10px] font-bold text-military-text uppercase tracking-widest font-mono flex items-center gap-2 mb-4 border-b border-military-green/30 pb-2">
+             <Activity className="w-4 h-4 text-military-muted" /> AI Pipeline Funnel
            </h2>
            <div className="flex-1 min-h-0">
              <ResponsiveContainer width="100%" height="100%">
                <FunnelChart>
-                 <RechartsTooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '4px', fontSize: '12px' }} />
+                 <RechartsTooltip contentStyle={{ backgroundColor: 'rgb(24,26,24)', borderColor: 'rgba(85,107,47,0.3)', borderRadius: '4px', fontSize: '12px', color: '#E2E8F0' }} />
                  <Funnel dataKey="value" data={funnelData} isAnimationActive>
-                   <LabelList position="right" fill="#cbd5e1" stroke="none" dataKey="name" fontSize={10} />
+                   <LabelList position="right" fill="#A3A8A0" stroke="none" dataKey="name" fontSize={10} />
                  </Funnel>
                </FunnelChart>
              </ResponsiveContainer>
@@ -104,26 +104,26 @@ export const Analytics = () => {
 
       <div className="grid grid-cols-12 gap-4 min-h-[250px]">
         {/* Events by Zone */}
-        <div className="col-span-6 bg-slate-900 border border-slate-800 p-4 rounded-lg shadow-lg flex flex-col">
-           <h2 className="text-xs font-bold text-slate-300 uppercase tracking-widest flex items-center gap-2 mb-4 border-b border-slate-800 pb-2">
-             <PieChartIcon className="w-4 h-4 text-slate-500" /> Activity by Zone
+        <div className="col-span-6 bg-military-panel border border-military-green/30 p-4 rounded-lg shadow-[inset_0_0_15px_rgba(0,0,0,0.4)] flex flex-col">
+           <h2 className="text-[10px] font-bold text-military-text uppercase tracking-widest font-mono flex items-center gap-2 mb-4 border-b border-military-green/30 pb-2">
+             <PieChartIcon className="w-4 h-4 text-military-muted" /> Activity by Zone
            </h2>
            <div className="flex-1 min-h-0">
              <ResponsiveContainer width="100%" height="100%">
                <BarChart data={zoneData} layout="vertical" margin={{ top: 0, right: 0, left: 10, bottom: 0 }}>
-                 <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" horizontal={false} />
-                 <XAxis type="number" stroke="#475569" fontSize={10} />
-                 <YAxis dataKey="name" type="category" stroke="#475569" fontSize={10} width={100} />
-                 <RechartsTooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '4px', fontSize: '12px' }} cursor={{fill: '#1e293b'}} />
-                 <Bar dataKey="events" fill="#10b981" radius={[0, 4, 4, 0]} />
+                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(85,107,47,0.3)" horizontal={false} />
+                 <XAxis type="number" stroke="rgba(85,107,47,0.8)" fontSize={10} />
+                 <YAxis dataKey="name" type="category" stroke="rgba(85,107,47,0.8)" fontSize={10} width={100} />
+                 <RechartsTooltip contentStyle={{ backgroundColor: 'rgb(24,26,24)', borderColor: 'rgba(85,107,47,0.3)', borderRadius: '4px', fontSize: '12px', color: '#E2E8F0' }} cursor={{fill: 'rgba(85,107,47,0.2)'}} />
+                 <Bar dataKey="events" fill="#556B2F" radius={[0, 4, 4, 0]} />
                </BarChart>
              </ResponsiveContainer>
            </div>
         </div>
         
         {/* Empty Placeholder for future metrics */}
-        <div className="col-span-6 bg-slate-900 border border-slate-800 border-dashed p-4 rounded-lg shadow-lg flex flex-col items-center justify-center text-slate-600">
-           <p className="font-mono text-xs uppercase tracking-widest">More metrics can be added here</p>
+        <div className="col-span-6 bg-military-panel/50 border border-military-green/30 border-dashed p-4 rounded-lg shadow-[inset_0_0_15px_rgba(0,0,0,0.2)] flex flex-col items-center justify-center text-military-muted">
+           <p className="font-mono text-[10px] uppercase tracking-widest">More metrics can be added here</p>
         </div>
       </div>
 

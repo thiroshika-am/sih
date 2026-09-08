@@ -26,18 +26,18 @@ export const Dashboard = () => {
       <div className="flex-1 p-4 grid grid-cols-12 gap-4 min-h-0">
         
         {/* Left Column: Live Camera Grid (25%) */}
-        <div className="col-span-3 min-h-0 bg-slate-900/50 border border-slate-800 rounded-lg p-2 overflow-y-auto">
+        <div className="col-span-3 min-h-0 bg-military-panel border border-military-green/30 rounded-lg p-2 overflow-y-auto">
           <div className="mb-2">
-            <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest px-2">Live Camera Feeds</h2>
+            <h2 className="text-[10px] font-bold text-military-muted uppercase tracking-widest px-2 font-mono">Live Camera Feeds</h2>
           </div>
           <CameraGrid layout="vertical" />
         </div>
 
         {/* Center Column: AI Processing & Intelligence (45%) */}
         <div className="col-span-6 flex flex-col gap-4 min-h-0">
-          <div className="flex-[3] bg-slate-900 border border-slate-800 rounded-lg p-3 min-h-0 overflow-hidden flex flex-col">
-            <h2 className="text-xs font-bold text-slate-300 uppercase tracking-widest mb-2 shrink-0">Border Zone Map</h2>
-            <div className="flex-1 relative rounded overflow-hidden">
+          <div className="flex-[3] bg-military-panel border border-military-green/30 rounded-lg p-3 min-h-0 overflow-hidden flex flex-col shadow-[inset_0_0_20px_rgba(0,0,0,0.5)]">
+            <h2 className="text-[10px] font-bold text-military-text uppercase tracking-widest mb-2 shrink-0 font-mono">Border Zone Map</h2>
+            <div className="flex-1 relative rounded overflow-hidden border border-military-green/20">
               <BorderMap />
             </div>
           </div>

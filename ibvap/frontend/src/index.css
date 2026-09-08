@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+@theme {
+  --color-military-bg: #080C08;
+  --color-military-panel: #151C14;
+  --color-military-green: #556B2F;
+  --color-military-olive: #4B5320;
+  --color-military-khaki: #B5A76A;
+  --color-military-sand: #C2B280;
+  --color-military-brown: #5A4632;
+  --color-military-success: #5F8C45;
+  --color-military-warning: #C59B3A;
+  --color-military-critical: #B63A32;
+  --color-military-text: #D8DDC8;
+  --color-military-muted: #7F8975;
+  
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", monospace;
+}
+
 @layer base {
   body {
     @apply bg-slate-950 text-slate-100 m-0 font-sans;

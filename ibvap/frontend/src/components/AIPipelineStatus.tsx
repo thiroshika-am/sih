@@ -37,8 +37,8 @@ export const AIPipelineStatus = () => {
   }, []);
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-lg p-3 flex items-center justify-between overflow-x-auto gap-2">
-      <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest shrink-0 mr-4">
+    <div className="bg-military-panel border border-military-green/30 rounded-lg p-3 flex items-center justify-between overflow-x-auto gap-2 shadow-[inset_0_0_10px_rgba(0,0,0,0.3)]">
+      <div className="text-[10px] font-bold text-military-muted uppercase tracking-widest shrink-0 mr-4 font-mono">
         AI Pipeline Status
       </div>
       
@@ -50,18 +50,18 @@ export const AIPipelineStatus = () => {
           return (
             <div key={stage.id} className="flex items-center gap-1">
               <div className={`flex flex-col items-center justify-center px-4 py-1.5 rounded border transition-all duration-300 min-w-[80px]
-                ${isActive ? 'bg-purple-500/20 border-purple-500/50 shadow-[0_0_10px_rgba(168,85,247,0.3)]' : 
-                  isPast ? 'bg-emerald-500/10 border-emerald-500/30' : 
-                  'bg-slate-950 border-slate-800'}`}>
-                <span className={`text-[10px] font-bold tracking-widest ${isActive ? 'text-purple-400' : isPast ? 'text-emerald-400' : 'text-slate-500'}`}>
+                ${isActive ? 'bg-military-warning/20 border-military-warning/50 shadow-[0_0_10px_rgba(197,155,58,0.3)]' : 
+                  isPast ? 'bg-military-success/10 border-military-success/30' : 
+                  'bg-military-bg border-military-green/20'}`}>
+                <span className={`text-[10px] font-bold tracking-widest ${isActive ? 'text-military-warning' : isPast ? 'text-military-success' : 'text-military-muted'}`}>
                   {stage.label}
                 </span>
-                <span className={`text-[9px] font-mono ${isActive ? 'text-purple-300/70' : 'text-slate-600'}`}>
+                <span className={`text-[9px] font-mono ${isActive ? 'text-military-warning/70' : 'text-military-muted/50'}`}>
                   {isActive || isPast ? stage.time : '...'}
                 </span>
               </div>
               {index < PIPELINE_STAGES.length - 1 && (
-                <ChevronRight className={`w-4 h-4 ${isPast ? 'text-emerald-500/50' : 'text-slate-700'}`} />
+                <ChevronRight className={`w-4 h-4 ${isPast ? 'text-military-success/50' : 'text-military-green/30'}`} />
               )}
             </div>
           );

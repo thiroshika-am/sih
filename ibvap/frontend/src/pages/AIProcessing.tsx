@@ -56,13 +56,13 @@ export const AIProcessing = () => {
 
   return (
     <div className="flex flex-col h-full p-4 gap-4 animate-in fade-in duration-500">
-      <div className="flex items-center gap-3 bg-slate-900 border border-slate-800 p-4 rounded-lg shrink-0 shadow-lg shadow-black/20">
-        <div className="p-2 bg-purple-500/10 rounded-md border border-purple-500/30">
-          <Cpu className="w-6 h-6 text-purple-400" />
+      <div className="flex items-center gap-3 bg-military-panel border border-military-green/30 p-4 rounded-lg shrink-0 shadow-[inset_0_0_15px_rgba(0,0,0,0.4)]">
+        <div className="p-2 bg-military-green/10 rounded-md border border-military-green/30">
+          <Cpu className="w-6 h-6 text-military-green" />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-slate-100 tracking-wide">AI Processing Pipeline</h1>
-          <p className="text-xs text-slate-400 font-mono tracking-widest uppercase">Deep Learning Inference Telemetry</p>
+          <h1 className="text-xl font-bold text-military-text tracking-wide">AI Processing Pipeline</h1>
+          <p className="text-[10px] text-military-muted font-mono tracking-widest uppercase">Deep Learning Inference Telemetry</p>
         </div>
       </div>
 
@@ -70,39 +70,39 @@ export const AIProcessing = () => {
         
         {/* Technical Stats */}
         <div className="col-span-3 flex flex-col gap-4 min-h-0">
-           <div className="bg-slate-900 border border-slate-800 rounded-lg p-5 shadow-lg flex flex-col gap-4">
-              <h2 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 border-b border-slate-800 pb-2">Current Frame Metadata</h2>
+           <div className="bg-military-panel border border-military-green/30 rounded-lg p-5 shadow-[inset_0_0_15px_rgba(0,0,0,0.4)] flex flex-col gap-4">
+              <h2 className="text-[10px] font-bold text-military-muted uppercase tracking-widest mb-2 border-b border-military-green/30 pb-2 font-mono">Current Frame Metadata</h2>
               
-              <div className="flex justify-between items-center bg-slate-950 p-2 rounded border border-slate-800">
-                 <span className="text-[10px] text-slate-400 font-mono uppercase">Resolution</span>
-                 <span className="text-xs font-bold text-slate-200 font-mono">1920 × 1080</span>
+              <div className="flex justify-between items-center bg-military-bg p-2 rounded border border-military-green/30">
+                 <span className="text-[10px] text-military-muted font-mono uppercase">Resolution</span>
+                 <span className="text-xs font-bold text-military-text font-mono">1920 × 1080</span>
               </div>
-              <div className="flex justify-between items-center bg-slate-950 p-2 rounded border border-slate-800">
-                 <span className="text-[10px] text-slate-400 font-mono uppercase">Total Inference</span>
-                 <span className="text-xs font-bold text-emerald-400 font-mono">{stats.inferenceTime}</span>
+              <div className="flex justify-between items-center bg-military-bg p-2 rounded border border-military-green/30">
+                 <span className="text-[10px] text-military-muted font-mono uppercase">Total Inference</span>
+                 <span className="text-xs font-bold text-military-success font-mono">{stats.inferenceTime}</span>
               </div>
-              <div className="flex justify-between items-center bg-slate-950 p-2 rounded border border-slate-800">
-                 <span className="text-[10px] text-slate-400 font-mono uppercase">System FPS</span>
-                 <span className="text-xs font-bold text-emerald-400 font-mono">{fps}</span>
+              <div className="flex justify-between items-center bg-military-bg p-2 rounded border border-military-green/30">
+                 <span className="text-[10px] text-military-muted font-mono uppercase">System FPS</span>
+                 <span className="text-xs font-bold text-military-success font-mono">{fps}</span>
               </div>
-              <div className="flex justify-between items-center bg-slate-950 p-2 rounded border border-slate-800">
-                 <span className="text-[10px] text-slate-400 font-mono uppercase">Persons Detected</span>
-                 <span className="text-xs font-bold text-blue-400 font-mono">{stats.persons}</span>
+              <div className="flex justify-between items-center bg-military-bg p-2 rounded border border-military-green/30">
+                 <span className="text-[10px] text-military-muted font-mono uppercase">Persons Detected</span>
+                 <span className="text-xs font-bold text-military-green font-mono">{stats.persons}</span>
               </div>
-              <div className="flex justify-between items-center bg-slate-950 p-2 rounded border border-slate-800">
-                 <span className="text-[10px] text-slate-400 font-mono uppercase">Vehicles Detected</span>
-                 <span className="text-xs font-bold text-blue-400 font-mono">{stats.vehicles}</span>
+              <div className="flex justify-between items-center bg-military-bg p-2 rounded border border-military-green/30">
+                 <span className="text-[10px] text-military-muted font-mono uppercase">Vehicles Detected</span>
+                 <span className="text-xs font-bold text-military-green font-mono">{stats.vehicles}</span>
               </div>
               
               <div className="mt-2 flex flex-col gap-2">
-                 <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Active Tracking IDs</span>
+                 <span className="text-[10px] text-military-muted font-bold uppercase tracking-widest font-mono">Active Tracking IDs</span>
                  <div className="flex flex-wrap gap-1">
                     {stats.trackingIds.length > 0 ? stats.trackingIds.map(id => (
-                       <span key={id} className="text-[10px] font-mono bg-blue-500/20 text-blue-300 px-1.5 py-0.5 rounded border border-blue-500/30">
+                       <span key={id} className="text-[10px] font-mono bg-military-green/20 text-military-green px-1.5 py-0.5 rounded border border-military-green/30">
                           {id}
                        </span>
                     )) : (
-                       <span className="text-xs text-slate-600 font-mono">None</span>
+                       <span className="text-[10px] text-military-muted font-mono">None</span>
                     )}
                  </div>
               </div>
@@ -110,9 +110,9 @@ export const AIProcessing = () => {
         </div>
 
         {/* Pipeline Visualization */}
-        <div className="col-span-9 bg-slate-900 border border-slate-800 rounded-lg p-6 shadow-lg flex flex-col relative overflow-hidden">
+        <div className="col-span-9 bg-military-panel border border-military-green/30 rounded-lg p-6 shadow-[inset_0_0_15px_rgba(0,0,0,0.4)] flex flex-col relative overflow-hidden">
            <div className="cctv-noise pointer-events-none opacity-10"></div>
-           <h2 className="text-xs font-bold text-slate-300 uppercase tracking-widest mb-8 relative z-10">Real-Time Inference Flow</h2>
+           <h2 className="text-[10px] font-bold text-military-text uppercase tracking-widest mb-8 relative z-10 font-mono">Real-Time Inference Flow</h2>
            
            <div className="flex-1 flex flex-col justify-center max-w-4xl mx-auto w-full relative z-10">
              
@@ -134,18 +134,18 @@ export const AIProcessing = () => {
                     <div key={stage.id} className="flex flex-col items-center gap-3 relative z-10">
                        <div className={`
                          w-16 h-16 rounded-xl border-2 flex items-center justify-center transition-all duration-300
-                         ${isActive ? 'bg-purple-500/20 border-purple-400 shadow-[0_0_20px_rgba(168,85,247,0.5)] scale-110' : 
-                           isPast ? 'bg-emerald-500/10 border-emerald-500/50 text-emerald-400' : 
-                           'bg-slate-950 border-slate-800 text-slate-600'}
+                         ${isActive ? 'bg-military-success/20 border-military-success shadow-[0_0_20px_rgba(95,140,69,0.5)] scale-110' : 
+                           isPast ? 'bg-military-success/10 border-military-success/50 text-military-success' : 
+                           'bg-military-bg border-military-green/30 text-military-muted'}
                        `}>
-                         <Icon className={`w-8 h-8 ${isActive ? 'text-purple-400 animate-pulse' : ''}`} />
+                         <Icon className={`w-8 h-8 ${isActive ? 'text-military-success animate-pulse' : ''}`} />
                        </div>
                        
                        <div className="text-center">
-                          <div className={`text-[10px] font-bold tracking-widest uppercase ${isActive ? 'text-purple-300' : isPast ? 'text-slate-300' : 'text-slate-500'}`}>
+                          <div className={`text-[10px] font-bold tracking-widest uppercase font-mono ${isActive ? 'text-military-success' : isPast ? 'text-military-text' : 'text-military-muted'}`}>
                             {stage.label}
                           </div>
-                          <div className={`text-[9px] font-mono mt-1 ${isActive ? 'text-purple-400/80' : 'text-slate-600'}`}>
+                          <div className={`text-[9px] font-mono mt-1 ${isActive ? 'text-military-success/80' : 'text-military-muted'}`}>
                             {stage.time}
                           </div>
                        </div>

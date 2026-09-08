@@ -4,7 +4,7 @@ import { TopBar } from './TopBar';
 
 export const Layout = () => {
   return (
-    <div className="h-screen w-screen bg-slate-950 text-slate-100 flex flex-col font-sans overflow-hidden">
+    <div className="h-screen w-screen bg-military-bg text-military-text flex flex-col font-sans overflow-hidden selection:bg-military-green selection:text-white">
       <TopBar />
       <div className="flex-1 flex min-h-0">
         <Sidebar />

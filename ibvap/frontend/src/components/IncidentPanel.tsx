@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { wsService } from '../services/websocket';
-import { AlertTriangle, ArrowRight, ShieldAlert, Crosshair, MapPin, Activity } from 'lucide-react';
+import { ShieldAlert, Crosshair, MapPin, Activity } from 'lucide-react';
 
 export const IncidentPanel = () => {
   const [incident, setIncident] = useState<any>(null);
@@ -23,7 +23,7 @@ export const IncidentPanel = () => {
       }));
     });
 
-    const unsubAlert = wsService.subscribe('high_risk_alert', (data) => {
+    const unsubAlert = wsService.subscribe('high_risk_alert', () => {
        setIncident((prev: any) => ({ ...prev, is_alert: true }));
     });
 
@@ -49,10 +49,13 @@ export const IncidentPanel = () => {
   return (
     <div className={`flex flex-col h-full gap-4 transition-all duration-500`}>
       {/* Main Incident Card */}
-      <div className={`p-5 rounded-lg border shadow-xl relative overflow-hidden ${incident.is_alert ? 'bg-red-500/10 border-red-500/50 shadow-red-500/10' : 'bg-slate-800/40 border-slate-700'}`}>
+      <div className={`p-5 rounded-lg border shadow-xl relative overflow-hidden transition-all duration-500 ${incident.is_alert ? 'bg-red-950/40 border-red-500/50 shadow-[0_0_30px_rgba(239,68,68,0.3)]' : 'bg-slate-800/40 border-slate-700'}`}>
         
         {incident.is_alert && (
-          <div className="absolute top-0 left-0 w-full h-1 bg-red-500 animate-pulse"></div>
+          <>
+            <div className="absolute top-0 left-0 w-full h-1 bg-red-500 animate-pulse shadow-[0_0_10px_rgba(239,68,68,1)]"></div>
+            <div className="absolute inset-0 bg-red-500/5 animate-[pulse_2s_ease-in-out_infinite] pointer-events-none mix-blend-screen"></div>
+          </>
         )}
 
         <div className="flex justify-between items-start mb-6 relative z-10">
@@ -113,8 +116,10 @@ export const IncidentPanel = () => {
 
       {/* Prediction Card */}
       {incident.predicted_zone && (
-        <div className="p-4 rounded-lg bg-blue-900/10 border border-blue-500/30 relative overflow-hidden group">
-          <div className="absolute right-0 top-0 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl group-hover:bg-blue-500/10 transition-colors"></div>
+        <div className="p-4 rounded-lg bg-blue-950/40 border border-blue-500/30 relative overflow-hidden group shadow-[0_0_20px_rgba(59,130,246,0.1)] backdrop-blur-sm">
+          <div className="absolute right-0 top-0 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-colors duration-700"></div>
+          
+          <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(59, 130, 246, 0.05) 3px, rgba(59, 130, 246, 0.05) 3px)' }}></div>
           
           <h3 className="text-[10px] font-bold text-blue-400 uppercase tracking-widest mb-4 flex items-center gap-2">
             <Activity className="w-4 h-4" /> NEXT-ZONE PREDICTION

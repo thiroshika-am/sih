@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { wsService } from '../services/websocket';
 import { ScanFace, CheckCircle2, XCircle, Clock, Map, Compass } from 'lucide-react';
 

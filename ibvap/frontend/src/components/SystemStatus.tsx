@@ -1,5 +1,4 @@
-import React from 'react';
-import { Cpu, Network, Database, HardDrive, Wifi } from 'lucide-react';
+import { Cpu, Network, HardDrive, Wifi } from 'lucide-react';
 
 interface SystemStatusProps {
   fps: number;
@@ -7,7 +6,7 @@ interface SystemStatusProps {
   queue: number;
 }
 
-export const SystemStatus: React.FC<SystemStatusProps> = ({ fps, network, queue }) => {
+export const SystemStatus = ({ fps, network, queue }: SystemStatusProps) => {
   const isOffline = network === 'OFFLINE';
 
   return (

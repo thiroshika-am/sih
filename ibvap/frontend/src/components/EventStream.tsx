@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { wsService } from '../services/websocket';
 import { Activity, Bell, Eye, ShieldAlert, Zap } from 'lucide-react';
 
@@ -53,7 +53,7 @@ export const EventStream = () => {
       addEvent('PREDICTION', 'AI MODEL', `${data.predicted_zone} ${((data.probability || 0) * 100).toFixed(0)}%`, 'warning');
     });
 
-    const unsubAlert = wsService.subscribe('high_risk_alert', (data) => {
+    const unsubAlert = wsService.subscribe('high_risk_alert', () => {
       addEvent('ALERT', 'COMMAND', `HIGH-RISK INCIDENT`, 'alert');
     });
     
@@ -91,19 +91,19 @@ export const EventStream = () => {
           </div>
         ) : (
           events.map((evt) => (
-            <div key={evt.id} className={`p-2 rounded border-l-2 text-xs font-mono grid grid-cols-[60px_1fr] gap-2 animate-in slide-in-from-top-2 duration-300 ${
-              evt.severity === 'alert' ? 'bg-red-500/10 border-red-500 text-red-200' :
-              evt.severity === 'warning' ? 'bg-amber-500/10 border-amber-500 text-amber-200' :
-              'bg-slate-800/50 border-blue-500 text-slate-300'
+            <div key={evt.id} className={`p-2 rounded border-l-2 text-xs font-mono grid grid-cols-[65px_1fr] gap-2 animate-in slide-in-from-top-4 fade-in duration-300 shadow-sm ${
+              evt.severity === 'alert' ? 'bg-red-950/40 border-red-500 text-red-200 shadow-[0_0_10px_rgba(239,68,68,0.2)]' :
+              evt.severity === 'warning' ? 'bg-amber-950/40 border-amber-500 text-amber-200' :
+              'bg-slate-900/60 border-emerald-500 text-slate-300 shadow-[0_0_5px_rgba(16,185,129,0.1)]'
             }`}>
-              <div className="text-slate-500">{evt.time}</div>
+              <div className="text-slate-500 mt-0.5 opacity-70">{evt.time}</div>
               <div>
                 <div className="flex flex-col">
-                  <span className={`font-bold flex items-center gap-1 ${evt.severity === 'alert' ? 'text-red-400' : evt.severity === 'warning' ? 'text-amber-400' : 'text-blue-400'}`}>
-                    {getIcon(evt.type)} {evt.source}
+                  <span className={`font-bold flex items-center gap-1 ${evt.severity === 'alert' ? 'text-red-400 animate-pulse' : evt.severity === 'warning' ? 'text-amber-400' : 'text-emerald-400'}`}>
+                    {getIcon(evt.type)} [{evt.source}]
                   </span>
-                  <span className="font-semibold">{evt.type}</span>
-                  <span className="opacity-80 mt-0.5">{evt.message}</span>
+                  <span className="font-semibold tracking-wide">{evt.type}</span>
+                  <span className="opacity-80 mt-0.5 font-light">&gt;&gt; {evt.message}</span>
                 </div>
               </div>
             </div>

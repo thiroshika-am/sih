@@ -112,120 +112,163 @@ class SimulationEngine:
 
     async def _run_demo_scenario(self):
         try:
-            # STEP 1: CAM-01 detects P-001
-            await self._emit_event("alert", "STEP 1: CAM-01 detects person")
+            # Stage 1: Person enters camera frame.
+            await self._emit_event("alert", "STAGE 1: Person enters camera frame (CAM-01)")
             await self._broadcast_or_buffer({
                 "type": "detection",
                 "camera_id": "CAM-01",
-                "person_id": "P-001",
+                "person_id": "UNKNOWN",
+                "zone": "ZONE-A",
+                "confidence": 0.45
+            })
+            if not await self._wait(2): return
+
+            # Stage 2: AI detects person.
+            await self._emit_event("alert", "STAGE 2: AI detects person.")
+            await self._broadcast_or_buffer({
+                "type": "detection",
+                "camera_id": "CAM-01",
+                "person_id": "UNKNOWN",
                 "zone": "ZONE-A",
                 "confidence": 0.94
             })
-            if not await self._wait(3): return
+            if not await self._wait(2): return
 
-            # STEP 2: Tracking
-            await self._emit_event("alert", "STEP 2: P-001 is tracked")
+            # Stage 3: Tracking ID is created.
+            await self._emit_event("alert", "STAGE 3: Tracking ID is created (P-1042).")
             await self._broadcast_or_buffer({
                 "type": "track",
                 "camera_id": "CAM-01",
-                "person_id": "P-001",
+                "person_id": "P-1042",
                 "path": ["CAM-01"]
             })
-            if not await self._wait(3): return
+            if not await self._wait(2): return
 
-            # STEP 3: CAM-02
-            await self._emit_event("alert", "STEP 3: P-001 appears on CAM-02")
+            # Stage 4: Identity verification begins.
+            await self._emit_event("alert", "STAGE 4: Identity verification begins.")
             await self._broadcast_or_buffer({
-                "type": "detection",
-                "camera_id": "CAM-02",
-                "person_id": "P-001",
-                "zone": "ZONE-B",
-                "confidence": 0.92
+                "type": "verification_start",
+                "person_id": "P-1042",
+                "status": "PROCESSING"
             })
             if not await self._wait(3): return
 
-            # STEP 4: Re-ID match
-            await self._emit_event("alert", "STEP 4: Re-ID confirms match (CAM-01 -> CAM-02)")
+            # Stage 5: Identity remains unverified.
+            await self._emit_event("alert", "STAGE 5: Identity remains unverified.")
             await self._broadcast_or_buffer({
                 "type": "reid_match",
-                "person_id": "P-001",
-                "from_camera": "CAM-01",
-                "to_camera": "CAM-02",
-                "confidence": 0.91,
-                "status": "CONFIRMED",
+                "person_id": "P-1042",
+                "from_camera": "DB",
+                "to_camera": "CAM-01",
+                "confidence": 0.34,
+                "status": "UNKNOWN",
                 "validity": {
-                    "time": "VALID",
-                    "spatial": "VALID",
-                    "direction": "VALID"
+                    "time": "N/A",
+                    "spatial": "N/A",
+                    "direction": "N/A"
                 }
             })
-            if not await self._wait(3): return
+            if not await self._wait(2): return
 
-            # STEP 5: CAM-03
-            await self._emit_event("alert", "STEP 5: P-001 appears on CAM-03")
+            # Stage 6: Person enters restricted zone.
+            await self._emit_event("alert", "STAGE 6: Person enters restricted zone.")
             await self._broadcast_or_buffer({
                 "type": "detection",
                 "camera_id": "CAM-03",
-                "person_id": "P-001",
-                "zone": "ZONE-C",
-                "confidence": 0.89
+                "person_id": "P-1042",
+                "zone": "RESTRICTED SECTOR B",
+                "confidence": 0.96
             })
-            if not await self._wait(3): return
+            if not await self._wait(2): return
 
-            # STEP 6: Incident graph
-            await self._emit_event("alert", "STEP 6: Incident graph created")
+            # Stage 7: Movement is detected toward border.
+            await self._emit_event("alert", "STAGE 7: Movement is detected toward border.")
             await self._broadcast_or_buffer({
-                "type": "incident_update",
-                "incident_id": "INC-1047",
-                "person_id": "P-001",
-                "path": ["CAM-01", "CAM-02", "CAM-03"]
+                "type": "track",
+                "camera_id": "CAM-03",
+                "person_id": "P-1042",
+                "direction": "NORTH-EAST",
+                "path": ["CAM-01", "CAM-03"]
             })
-            if not await self._wait(3): return
+            if not await self._wait(2): return
 
-            # STEP 7: Restricted zone
-            await self._emit_event("alert", "STEP 7: P-001 enters RESTRICTED-ZONE")
+            # Stage 8: Historical sightings are retrieved.
+            await self._emit_event("alert", "STAGE 8: Historical sightings are retrieved.")
             await self._broadcast_or_buffer({
-                "type": "detection",
-                "camera_id": "CAM-04",
-                "person_id": "P-001",
-                "zone": "RESTRICTED-ZONE",
-                "confidence": 0.95
+                "type": "history_retrieved",
+                "person_id": "P-1042",
+                "sightings": 3
             })
-            if not await self._wait(3): return
+            if not await self._wait(2): return
 
-            # STEP 8: Risk score increases
-            await self._emit_event("alert", "STEP 8: Risk score increases")
+            # Stage 9: Risk score increases.
+            await self._emit_event("alert", "STAGE 9: Risk score increases.")
             await self._broadcast_or_buffer({
                 "type": "risk_update",
-                "incident_id": "INC-1047",
-                "risk_score": 87,
+                "incident_id": "INC-1042",
+                "person_id": "P-1042",
+                "risk_score": 65,
                 "factors": [
-                    {"name": "Restricted Zone", "weight": 30},
-                    {"name": "Suspicious Direction", "weight": 20},
-                    {"name": "Unusual Time", "weight": 15},
-                    {"name": "Cross-Camera", "weight": 12},
-                    {"name": "Dwell Time", "weight": 10}
+                    {"name": "Identity verification", "weight": 15},
+                    {"name": "Restricted zone entry", "weight": 25},
+                    {"name": "Borderward movement", "weight": 20},
+                    {"name": "Behavior anomaly", "weight": 5}
                 ]
             })
-            if not await self._wait(3): return
+            if not await self._wait(2): return
 
-            # STEP 9: Next zone predicted
-            await self._emit_event("alert", "STEP 9: Next zone predicted")
+            # Stage 10: Risk threshold is crossed.
+            await self._emit_event("alert", "STAGE 10: Risk threshold is crossed.")
             await self._broadcast_or_buffer({
-                "type": "prediction",
-                "incident_id": "INC-1047",
-                "predicted_zone": "SENSITIVE-ZONE",
-                "probability": 0.78
+                "type": "risk_update",
+                "incident_id": "INC-1042",
+                "person_id": "P-1042",
+                "risk_score": 87,
+                "factors": [
+                    {"name": "Identity verification", "weight": 15},
+                    {"name": "Restricted zone entry", "weight": 25},
+                    {"name": "Borderward movement", "weight": 20},
+                    {"name": "Repeated sightings", "weight": 12},
+                    {"name": "Time anomaly", "weight": 10},
+                    {"name": "Behavior anomaly", "weight": 5}
+                ]
             })
-            if not await self._wait(3): return
+            if not await self._wait(2): return
 
-            # STEP 10: High risk alert
-            await self._emit_event("alert", "STEP 10: HIGH-RISK alert generated")
+            # Stage 11: High-priority alert is generated.
+            await self._emit_event("alert", "STAGE 11: High-priority alert is generated.")
             await self._broadcast_or_buffer({
                 "type": "high_risk_alert",
-                "incident_id": "INC-1047",
+                "incident_id": "INC-1042",
+                "person_id": "P-1042",
                 "risk_score": 87
             })
+            if not await self._wait(2): return
+
+            # Stage 12: Evidence snapshot is created.
+            await self._emit_event("alert", "STAGE 12: Evidence snapshot is created.")
+            await self._broadcast_or_buffer({
+                "type": "evidence_created",
+                "evidence_id": "EVD-1042",
+                "incident_id": "INC-1042",
+                "person_id": "P-1042",
+                "type": "SNAPSHOT",
+                "camera_id": "CAM-03"
+            })
+            if not await self._wait(2): return
+
+            # Stage 13: Incident is stored.
+            await self._emit_event("alert", "STAGE 13: Incident is stored.")
+            await self._broadcast_or_buffer({
+                "type": "incident_stored",
+                "incident_id": "INC-1042",
+                "person_id": "P-1042",
+                "status": "NEW"
+            })
+            if not await self._wait(2): return
+
+            # Stage 14 is operator action (waiting for user input in frontend)
+            await self._emit_event("alert", "STAGE 14: Waiting for operator review.")
 
             self.demo_mode = False
         except asyncio.CancelledError:

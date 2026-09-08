@@ -1,4 +1,3 @@
-import React from 'react';
 import { TacticalBackground } from '../components/login/TacticalBackground';
 import { SystemTelemetry } from '../components/login/SystemTelemetry';
 import { LoginForm } from '../components/login/LoginForm';

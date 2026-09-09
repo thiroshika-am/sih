@@ -33,11 +33,11 @@ export const BorderMap = () => {
       <div className="absolute top-1/2 left-1/2 w-[200%] h-[200%] rounded-full bg-[conic-gradient(from_0deg,transparent_70%,rgba(95,140,69,0.1)_100%)] animate-[spin_4s_linear_infinite] transform -translate-x-1/2 -translate-y-1/2 pointer-events-none" style={{ transformOrigin: 'center' }}></div>
 
       {/* Connection Lines Mesh */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
-        <path d="M 15% 25% L 45% 25% L 75% 25% L 75% 70% L 45% 80% L 15% 25%" fill="none" stroke="rgba(75, 83, 32, 0.5)" strokeWidth="1.5" strokeDasharray="4 4" />
-        <path d="M 45% 25% L 45% 80%" fill="none" stroke="rgba(75, 83, 32, 0.5)" strokeWidth="1.5" strokeDasharray="4 4" />
-        <path d="M 15% 25% L 45% 80%" fill="none" stroke="rgba(75, 83, 32, 0.3)" strokeWidth="1" />
-        <path d="M 75% 25% L 45% 80%" fill="none" stroke="rgba(75, 83, 32, 0.3)" strokeWidth="1" />
+      <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path d="M 15 25 L 45 25 L 75 25 L 75 70 L 45 80 L 15 25" fill="none" stroke="rgba(75, 83, 32, 0.5)" strokeWidth="1.5" strokeDasharray="4 4" vectorEffect="non-scaling-stroke" />
+        <path d="M 45 25 L 45 80" fill="none" stroke="rgba(75, 83, 32, 0.5)" strokeWidth="1.5" strokeDasharray="4 4" vectorEffect="non-scaling-stroke" />
+        <path d="M 15 25 L 45 80" fill="none" stroke="rgba(75, 83, 32, 0.3)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+        <path d="M 75 25 L 45 80" fill="none" stroke="rgba(75, 83, 32, 0.3)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
       </svg>
 
       {/* Zones */}

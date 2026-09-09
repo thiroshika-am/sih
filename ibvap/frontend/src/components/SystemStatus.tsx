@@ -62,8 +62,8 @@ export const SystemStatus = ({ fps, network, queue }: SystemStatusProps) => {
                <span className="text-military-muted/50 text-xs">/</span>
                <span className="text-xs font-mono text-military-muted">AVAILABLE</span>
              </div>
-             <div className="flex flex-col items-end">
-               <span className="text-sm text-military-success font-mono font-bold border border-military-success/40 bg-military-success/10 px-2.5 py-1 rounded-lg shadow-[0_0_15px_rgba(95,140,69,0.15)] group-hover/card:shadow-[0_0_20px_rgba(95,140,69,0.25)] transition-all">
+             <div className="flex flex-col items-end shrink-0">
+               <span className="text-sm text-military-success font-mono font-bold border border-military-success/40 bg-military-success/10 px-2.5 py-1 rounded-lg shadow-[0_0_15px_rgba(95,140,69,0.15)] group-hover/card:shadow-[0_0_20px_rgba(95,140,69,0.25)] transition-all whitespace-nowrap">
                  {fps} FPS
                </span>
              </div>
